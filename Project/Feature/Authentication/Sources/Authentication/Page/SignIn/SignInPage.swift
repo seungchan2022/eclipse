@@ -19,5 +19,9 @@ extension SignInPage {
 extension SignInPage: View {
   var body: some View {
     Text("Sign In Page")
+    
+    Button(action: { viewStore.send(.test) }) {
+      Text("회원 가입")
+    }
   }
 }
