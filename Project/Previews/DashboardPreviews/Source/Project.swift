@@ -9,7 +9,7 @@ let project: Project = .previewProject(
     .local(path: "../../../Core/DesignSystem"),
     .local(path: "../../../Core/Domain"),
     .local(path: "../../../Core/Platform"),
-  ],
+  ] + .defaultItemList,
   dependencies: [
     .package(product: "Dashboard"),
-  ])
+  ] + .defaultItemList)

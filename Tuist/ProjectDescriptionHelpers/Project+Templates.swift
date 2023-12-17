@@ -5,7 +5,7 @@ extension Target {
   static func previewTarget(
     projectName: String,
     dependencies: [TargetDependency])
-    -> Self
+  -> Self
   {
     .init(
       name: "\(projectName)Preview",
@@ -19,7 +19,7 @@ extension Target {
       dependencies: dependencies,
       settings: .defaultConfigSettings)
   }
-
+  
   static func previewTestTarget(projectName: String) -> Self {
     .init(
       name: "\(projectName)PreviewTests",
@@ -36,7 +36,7 @@ extension Target {
 }
 
 extension Collection<Scheme> {
-
+  
   public static func testScheme(previewTestTarget: String) -> [Scheme] {
     [
       .init(
@@ -59,12 +59,12 @@ extension Settings {
 }
 
 extension Project {
-
+  
   public static func previewProject(
     projectName: String,
     packages: [Package],
     dependencies: [TargetDependency])
-    -> Self
+  -> Self
   {
     .init(
       name: "\(projectName)Preview",
@@ -123,18 +123,36 @@ var customPropertyInfoValue: [String: InfoPlist.Value] {
 }
 
 extension String {
-
+  
   public static func appVersion() -> String {
     let formatter = DateFormatter()
     formatter.dateFormat = "yy.MM.dd"
     formatter.locale = Locale(identifier: "ko_KR")
     return formatter.string(from: Date())
   }
-
+  
   public static func appBuildVersion() -> String {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyyMMddHHmmsss"
     formatter.locale = Locale(identifier: "ko_KR")
     return formatter.string(from: Date())
+  }
+}
+
+extension [TargetDependency] {
+  public static var defaultItemList: Self {
+    [
+      .package(product: "FirebaseAuth"),
+      .package(product: "ComposableArchitecture")
+    ]
+  }
+}
+
+extension [Package] {
+  public static var defaultItemList: Self {
+    [
+      .package(url: "https://github.com/firebase/firebase-ios-sdk.git", .upToNextMajor(from: "10.13.0")),
+      
+    ]
   }
 }
