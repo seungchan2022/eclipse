@@ -21,7 +21,8 @@ extension SignInEnvType {
     {
       .publisher {
         useCaseGroup.authUseCase
-          .signOut()
+          .me()
+//          .signOut()
 //          .signInEmail(.init(content: "test@test.com", password: "123456"))
 //          .signUpEmail(.init(content: "test@test.com", password: "123456"))
           .map { _ in true }
