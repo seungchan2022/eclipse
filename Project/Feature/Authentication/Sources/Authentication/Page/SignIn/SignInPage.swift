@@ -21,7 +21,7 @@ extension SignInPage: View {
     Text("Sign In Page")
     
     Button(action: { viewStore.send(.test) }) {
-      Text("회원 가입")
+      Text("로그인")
     }
   }
 }

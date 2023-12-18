@@ -13,7 +13,7 @@ struct AppMain: App {
     WindowGroup {
       LinkNavigationView(
         linkNavigator: viewModel.linkNavigator,
-        item: .init(path: Link.Authentication.Path.signIn.rawValue))
+        item: .init(path: Link.Authentication.Path.signUp.rawValue))
       .ignoresSafeArea()
     }
   }
