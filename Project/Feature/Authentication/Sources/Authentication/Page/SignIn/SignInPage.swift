@@ -18,10 +18,48 @@ extension SignInPage {
 
 extension SignInPage: View {
   var body: some View {
-    Text("Sign In Page")
-    
-    Button(action: { viewStore.send(.test) }) {
-      Text("로그인")
+    VStack {
+      Text("Sign In Page")
+        .font(.largeTitle)
+      
+      Spacer()
+      
+      TextField(
+        "",
+        text: viewStore.$email,
+        prompt: Text("Email"))
+      .textInputAutocapitalization(.none)
+      .padding()
+      .background(.thinMaterial)
+      .clipShape(RoundedRectangle(cornerRadius: 10))
+      
+      TextField(
+        "",
+        text: viewStore.$password,
+        prompt: Text("Password"))
+      .textInputAutocapitalization(.none)
+      .padding()
+      .background(.thinMaterial)
+      .clipShape(RoundedRectangle(cornerRadius: 10))
+            
+      Button(action: { viewStore.send(.onTapSignIn) }) {
+        Text("로그인")
+      }
+      .padding(.top, 24)
+      
+      Spacer()
+      
+      Button(action: { viewStore.send(.routeToSignUp) }) {
+        HStack {
+          Text("Don't have an account?")
+          
+          Text("Sign Up here")
+            .fontWeight(.bold)
+        }
+      }
+      
+      Spacer()
     }
+    .padding()
   }
 }
