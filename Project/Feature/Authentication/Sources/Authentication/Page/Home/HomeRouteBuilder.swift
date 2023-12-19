@@ -12,7 +12,9 @@ struct HomeRouteBuilder<RootNavigator: RootNavigatorType> {
         HomePage(store: .init(
           initialState: HomeStore.State(),
           reducer: {
-            HomeStore(env: .init(useCaseGroup: env))
+            HomeStore(env: .init(
+              useCaseGroup: env,
+              navigator: navigator))
           }))
       }
     }

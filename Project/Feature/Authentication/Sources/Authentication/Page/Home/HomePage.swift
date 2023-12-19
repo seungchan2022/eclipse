@@ -18,12 +18,21 @@ extension HomePage {
 
 extension HomePage: View {
   var body: some View {
+    
     VStack {
       Text("홈페이지")
+        .font(.largeTitle)
       
-      Button(action: { }) {
+      Spacer()
+            
+      Button(action: { viewStore.send(.onTapSignOut) }) {
         Text("Sign Out")
       }
+      .padding(.top, 24)
+      
+      Spacer()
     }
+    .padding()
+    .navigationBarBackButtonHidden(true)
   }
 }
