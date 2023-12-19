@@ -34,20 +34,6 @@ extension SignInEnvType {
             .map(SignInStore.Action.fetchSignIn)
         }
     }
-    //    {
-    //      .publisher {
-    //        useCaseGroup.authUseCase
-    ////          .signin
-    ////          .me()
-    //        //          .signOut()
-    //                  .signInEmail(.init(content: "test@test.com", password: "123456"))
-    //        //          .signUpEmail(.init(content: "test@test.com", password: "123456"))
-    //          .map { _ in true }
-    //          .mapToResult()
-    //          .receive(on: mainQueue)
-    //          .map(SignInStore.Action.fetchTest)
-    //      }
-    //    }
   }
   
   var routeToSignUp: () -> Void {

@@ -84,16 +84,3 @@ extension SignInStore {
     case requestSignIn
   }
 }
-
-
-//var save: (MemoEditorStore.State) -> Effect<MemoEditorStore.Action> {
-//  { state in
-//    .publisher {
-//      Just(state.serialized())
-//        .flatMap(useCaseGroup.memoUseCase.createOrUpdate)
-//        .receive(on: mainQueue)
-//        .mapToResult()
-//        .map(MemoEditorStore.Action.fetchCreate)
-//    }
-//  }
-//}
