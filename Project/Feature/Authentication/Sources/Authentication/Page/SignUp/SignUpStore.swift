@@ -17,7 +17,32 @@ extension SignUpStore: Reducer {
         return .none
         
       case .teardown:
+        return .concatenate(
+          CancelID.allCases.map { .cancel(pageID: pageID, id: $0 )})
+        
+      case .onTapSignUp:
+        return env.signUp(state)
+          .cancellable(pageID: pageID, id: CancelID.requestSignUp, cancelInFlight: true)
+        
+      case .fetchSignUp(let result):
+        switch result {
+        case .success:
+          env.routeToSignIn()
+          print("Succeed Sign Up")
+          return .none
+          
+        case .failure(let error):
+          return .run { await $0(.throwError(error) )}
+        }
+        
+      case .routeToSignIn:
+        env.routeToSignIn()
         return .none
+        
+      case .throwError(let error):
+        print(error)
+        return .none
+        
       }
     }
   }
@@ -25,13 +50,31 @@ extension SignUpStore: Reducer {
 
 extension SignUpStore {
   struct State: Equatable {
+    init(injectionItem: Auth.Email.Request?) {
+      _fetchSignUp = .init(.init(isLoading: false))
+      
+      email = injectionItem?.content ?? ""
+      password = injectionItem?.password ?? ""
+      
+    }
+    @Heap var fetchSignUp: FetchState.Empty
+    @BindingState var email = ""
+    @BindingState var password = ""
   }
 }
 
-extension SignUpStore { 
+extension SignUpStore {
   enum Action: Equatable, BindableAction {
     case binding(BindingAction<State>)
     case teardown
+    
+    case onTapSignUp
+    
+    case fetchSignUp(Result<Auth.Email.Request, CompositeErrorRepository>)
+    
+    case routeToSignIn
+    
+    case throwError(CompositeErrorRepository)
     
   }
 }
@@ -39,5 +82,6 @@ extension SignUpStore {
 extension SignUpStore {
   enum CancelID: Equatable, CaseIterable {
     case teardown
+    case requestSignUp
   }
 }

@@ -19,10 +19,52 @@ extension SignUpPage {
 
 extension SignUpPage: View {
   var body: some View {
-    Text("회원 가입 페이지")
     
-    Button(action: { }) {
-      Text("Sign Up")
+    VStack {
+      Text("Sign Up Page")
+        .font(.largeTitle)
+      
+      Spacer()
+      
+      TextField(
+        "",
+        text: viewStore.$email,
+        prompt: Text("Email"))
+      .textInputAutocapitalization(.none)
+      .padding()
+      .background(.thinMaterial)
+      .clipShape(RoundedRectangle(cornerRadius: 10))
+      
+      TextField(
+        "",
+        text: viewStore.$password,
+        prompt: Text("Password"))
+      .textInputAutocapitalization(.none)
+      .padding()
+      .background(.thinMaterial)
+      .clipShape(RoundedRectangle(cornerRadius: 10))
+            
+      Button(action: { viewStore.send(.onTapSignUp) }) {
+        Text("회원 가입")
+      }
+      .padding(.top, 24)
+      
+      Spacer()
+      
+      Button(action: { viewStore.send(.routeToSignIn) }) {
+        HStack {
+          Text("Already have an account?")
+          
+          Text("Sign In here")
+            .fontWeight(.bold)
+        }
+      }
+      
+      Spacer()
     }
+    .padding()
+    .navigationBarBackButtonHidden(true)
+
+    
   }
 }

@@ -24,6 +24,9 @@ extension HomePage: View {
         .font(.largeTitle)
       
       Spacer()
+      
+      Text("로그인 성공!")
+        .font(.title)
             
       Button(action: { viewStore.send(.onTapSignOut) }) {
         Text("Sign Out")
