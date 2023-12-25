@@ -54,7 +54,6 @@ extension SignInStore {
       
       email = injectionItem?.content ?? ""
       password = injectionItem?.password ?? ""
-
     }
     
     @Heap var fetchSignIn: FetchState.Empty

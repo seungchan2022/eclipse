@@ -9,6 +9,7 @@ public struct AuthUseCasePlatform {
 }
 
 extension AuthUseCasePlatform: AuthUseCase {
+  
   public var signUpEmail: (Domain.Auth.Email.Request) -> AnyPublisher<Domain.Auth.Email.Request, CompositeErrorRepository> {
     { req in
       Future<Domain.Auth.Email.Request, CompositeErrorRepository> { promise in

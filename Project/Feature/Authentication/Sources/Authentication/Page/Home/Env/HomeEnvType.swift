@@ -43,4 +43,29 @@ extension HomeEnvType {
         isAnimated: false)
     }
   }
+    
+  var user: () -> Effect<HomeStore.Action> {
+    {
+      .publisher {
+        useCaseGroup.authUseCase
+          .me()
+          .map { _ in true }
+          .mapToResult()
+          .receive(on: mainQueue)
+          .map(HomeStore.Action.fetchUser)
+      }
+    }
+  }
+  
+  var userInfo: () -> Effect<HomeStore.Action> {
+    {
+      .publisher {
+        useCaseGroup.authUseCase
+          .me()
+          .mapToResult()
+          .receive(on: mainQueue)
+          .map(HomeStore.Action.fetchUserInfo)
+      }
+    }
+  }
 }

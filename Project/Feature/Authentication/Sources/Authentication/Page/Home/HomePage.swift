@@ -27,7 +27,19 @@ extension HomePage: View {
       
       Text("로그인 성공!")
         .font(.title)
-            
+
+      VStack(alignment: .leading, spacing: 8) {
+        Text("Uid: \(viewStore.state.item.uid)")
+        Text("Email: \(viewStore.state.item.email ??  "")")
+        Text("Photo URL : \(viewStore.state.item.photoURL ?? "Don't have an photo item")")
+      }
+      .padding()
+      .clipShape(RoundedRectangle(cornerRadius: 10))
+      .overlay(
+        RoundedRectangle(cornerRadius: 10)
+          .stroke(lineWidth: 1)
+      )
+      
       Button(action: { viewStore.send(.onTapSignOut) }) {
         Text("Sign Out")
       }
@@ -35,7 +47,12 @@ extension HomePage: View {
       
       Spacer()
     }
+    .onAppear {
+      viewStore.send(.getUserInfo)
+    }
+    .padding(.top, 64)
     .padding()
     .navigationBarBackButtonHidden(true)
+    .toolbar(.hidden, for: .navigationBar)
   }
 }

@@ -75,7 +75,6 @@ extension SignUpStore {
     case routeToSignIn
     
     case throwError(CompositeErrorRepository)
-    
   }
 }
 

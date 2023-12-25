@@ -49,8 +49,7 @@ extension SignInEnvType {
     {
       navigator.backOrNext(
         linkItem: .init(
-          path: Link.Authentication.Path.home.rawValue,
-          items: ""),
+          path: Link.Authentication.Path.home.rawValue),
         isAnimated: true)
     }
   }

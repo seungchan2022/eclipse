@@ -10,7 +10,6 @@ struct SignUpPage {
     self.store = store
     self.viewStore = ViewStore(store, observe: { $0 })
   }
-  
 }
 
 extension SignUpPage {
@@ -62,9 +61,10 @@ extension SignUpPage: View {
       
       Spacer()
     }
+    .padding(.top, 64)
     .padding()
     .navigationBarBackButtonHidden(true)
-
+    .toolbar(.hidden, for: .navigationBar)
     
   }
 }

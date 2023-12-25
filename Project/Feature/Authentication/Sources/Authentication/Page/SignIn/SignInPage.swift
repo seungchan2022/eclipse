@@ -60,6 +60,9 @@ extension SignInPage: View {
       
       Spacer()
     }
+    .padding(.top, 64)
     .padding()
+    .navigationBarBackButtonHidden(true)
+    .toolbar(.hidden, for: .navigationBar)
   }
 }
