@@ -5,7 +5,7 @@ import Architecture
 @main
 struct AppMain: App {
   
-  @UIApplicationDelegateAdaptor var delegate: AppDelegate
+  @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
   @State private var viewModel = AppViewModel()
   
@@ -14,6 +14,7 @@ struct AppMain: App {
       LinkNavigationView(
         linkNavigator: viewModel.linkNavigator,
         item: .init(path: Link.Authentication.Path.signIn.rawValue))
+      
       .ignoresSafeArea()
     }
   }

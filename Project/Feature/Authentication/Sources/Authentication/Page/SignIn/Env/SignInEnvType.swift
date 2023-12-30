@@ -24,14 +24,14 @@ struct SignInEnvType {
 }
 
 extension SignInEnvType {
-  var signIn: (SignInStore.State) -> Effect<SignInStore.Action> {
+  var signInEmail: (SignInStore.State) -> Effect<SignInStore.Action> {
     { state in
         .publisher {
           Just(state.serialized())
             .flatMap(useCaseGroup.authUseCase.signInEmail)
             .mapToResult()
             .receive(on: mainQueue)
-            .map(SignInStore.Action.fetchSignIn)
+            .map(SignInStore.Action.fetchSignInEmail)
         }
     }
   }
@@ -51,6 +51,19 @@ extension SignInEnvType {
         linkItem: .init(
           path: Link.Authentication.Path.home.rawValue),
         isAnimated: true)
+    }
+  }
+  
+  var signInGoogle: () -> Effect<SignInStore.Action> {
+    {
+      .publisher {
+        useCaseGroup.authUseCase
+          .signInGoogle()
+          .map { _ in true }
+          .mapToResult()
+          .receive(on: mainQueue)
+          .map(SignInStore.Action.fetchSignInGoogle)
+      }
     }
   }
 }

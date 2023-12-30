@@ -6,4 +6,6 @@ public protocol AuthUseCase {
   var signInEmail: (Auth.Email.Request) -> AnyPublisher<Auth.Email.Request, CompositeErrorRepository> { get }
   var signOut: () -> AnyPublisher<Void, CompositeErrorRepository> { get }
   var me: () -> AnyPublisher<Auth.Me.Response?, CompositeErrorRepository> { get }
+  
+  var signInGoogle: () -> AnyPublisher<Void, CompositeErrorRepository> { get }
 }

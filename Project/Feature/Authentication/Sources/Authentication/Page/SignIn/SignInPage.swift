@@ -1,6 +1,10 @@
 import ComposableArchitecture
+import Architecture
 import Domain
 import SwiftUI
+import GoogleSignIn
+import GoogleSignInSwift
+
 
 struct SignInPage {
   private let store: StoreOf<SignInStore>
@@ -42,11 +46,16 @@ extension SignInPage: View {
       .background(.thinMaterial)
       .clipShape(RoundedRectangle(cornerRadius: 10))
             
-      Button(action: { viewStore.send(.onTapSignIn) }) {
+      Button(action: { viewStore.send(.onTapSignInEmail) }) {
         Text("로그인")
       }
       .padding(.top, 24)
       
+      GoogleSignInButton(viewModel: GoogleSignInButtonViewModel(scheme: .dark, style: .wide, state: .normal)) {
+        print("Google Sign In Button Tapped")
+        viewStore.send(.onTapSignInGoogle)
+      }
+
       Spacer()
       
       Button(action: { viewStore.send(.routeToSignUp) }) {
@@ -66,3 +75,12 @@ extension SignInPage: View {
     .toolbar(.hidden, for: .navigationBar)
   }
 }
+
+//#Preview(body: {
+//  SignInPage(store: .init(
+//    initialState: SignInStore.State(injectionItem: .init(content: "", password: "")),
+//    reducer: {
+//      SignInStore(env: .init(
+//        useCaseGroup: AuthenticationEnvironmentUseable, navigator: ))
+//    }))
+//})

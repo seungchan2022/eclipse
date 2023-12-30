@@ -23,6 +23,9 @@ let package = Package(
     .package(
       url: "https://github.com/pointfreeco/swift-composable-architecture",
       .upToNextMajor(from: "1.5.5")),
+    .package(
+      url: "https://github.com/google/GoogleSignIn-iOS",
+      .upToNextMajor(from: "7.0.0")),
   ],
   targets: [
     .target(
@@ -33,6 +36,8 @@ let package = Package(
         "Platform",
         "LinkNavigator",
         .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+        .product(name: "GoogleSignIn", package: "GoogleSignIn-iOS"),
+        .product(name: "GoogleSignInSwift", package: "GoogleSignIn-iOS"),
       ]),
     .testTarget(
       name: "ArchitectureTests",

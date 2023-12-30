@@ -1,8 +1,11 @@
 import Domain
+import SwiftUI
 import Foundation
 import Firebase
 import FirebaseAuth
 import Combine
+import GoogleSignIn
+import GoogleSignInSwift
 
 public struct AuthUseCasePlatform {
   
@@ -21,7 +24,7 @@ extension AuthUseCasePlatform: AuthUseCase {
       .eraseToAnyPublisher()
     }
   }
-
+  
   public var signInEmail: (Domain.Auth.Email.Request) -> AnyPublisher<Domain.Auth.Email.Request, CompositeErrorRepository> {
     { req in
       Future<Domain.Auth.Email.Request, CompositeErrorRepository> { promise in
@@ -58,6 +61,39 @@ extension AuthUseCasePlatform: AuthUseCase {
         }
         print("BBB: 현재 로그인한 사용자 정보", me.serialized())
         return promise(.success(me.serialized()))
+      }
+      .eraseToAnyPublisher()
+    }
+  }
+  
+  public var signInGoogle: () -> AnyPublisher<Void, CompositeErrorRepository> {
+    {
+      Future<Void, CompositeErrorRepository> { promise in
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+  
+        // Start the sign in flow!
+        GIDSignIn.sharedInstance.signIn(withPresenting: GoogleClient.rootViewController) { result, error in
+          if let error { promise(.failure(.other(error))) }
+          
+          guard 
+            let user = result?.user,
+                let idToken = user.idToken?.tokenString
+          else { return }
+          
+          let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                         accessToken: user.accessToken.tokenString)
+          
+          Auth.auth().signIn(with: credential) { result, error in
+            if let error { promise(.failure(.other(error))) }
+            
+            print("Sign In")
+            return promise(.success(Void()))
+          }
+        }
       }
       .eraseToAnyPublisher()
     }
