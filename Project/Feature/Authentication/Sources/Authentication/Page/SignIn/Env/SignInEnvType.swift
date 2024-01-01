@@ -24,15 +24,16 @@ struct SignInEnvType {
 }
 
 extension SignInEnvType {
-  var signInEmail: (SignInStore.State) -> Effect<SignInStore.Action> {
+  var signEmail: (SignInStore.State) -> Effect<SignInStore.Action> {
     { state in
-        .publisher {
-          Just(state.serialized())
-            .flatMap(useCaseGroup.authUseCase.signInEmail)
-            .mapToResult()
-            .receive(on: mainQueue)
-            .map(SignInStore.Action.fetchSignInEmail)
-        }
+      .publisher {
+        useCaseGroup.authUseCase
+          .signInEmail(.init(content: state.email, password: state.password))
+          .map { _ in true }
+          .mapToResult()
+          .receive(on: mainQueue)
+          .map(SignInStore.Action.fetchSignInEmail)
+      }
     }
   }
   

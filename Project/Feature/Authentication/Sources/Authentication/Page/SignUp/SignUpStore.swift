@@ -57,6 +57,7 @@ extension SignUpStore {
       password = injectionItem?.password ?? ""
       
     }
+    
     @Heap var fetchSignUp: FetchState.Empty
     @BindingState var email = ""
     @BindingState var password = ""
@@ -70,7 +71,7 @@ extension SignUpStore {
     
     case onTapSignUp
     
-    case fetchSignUp(Result<Auth.Email.Request, CompositeErrorRepository>)
+    case fetchSignUp(Result<Bool, CompositeErrorRepository>)
     
     case routeToSignIn
     

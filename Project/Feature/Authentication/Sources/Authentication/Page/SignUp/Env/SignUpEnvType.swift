@@ -24,11 +24,13 @@ struct SignUpEnvType {
 }
 
 extension SignUpEnvType {
+  
   var signUp: (SignUpStore.State) -> Effect<SignUpStore.Action> {
     { state in
         .publisher {
-          Just(state.serialized())
-            .flatMap(useCaseGroup.authUseCase.signUpEmail)
+          useCaseGroup.authUseCase
+            .signUpEmail(.init(content: state.email, password: state.password))
+            .map { _ in true }
             .mapToResult()
             .receive(on: mainQueue)
             .map(SignUpStore.Action.fetchSignUp)

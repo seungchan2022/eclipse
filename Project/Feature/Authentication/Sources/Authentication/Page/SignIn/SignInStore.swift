@@ -21,7 +21,7 @@ extension SignInStore: Reducer {
           CancelID.allCases.map { .cancel(pageID: pageID, id: $0) })
         
       case .onTapSignInEmail:
-        return env.signInEmail(state)
+        return env.signEmail(state)
           .cancellable(pageID: pageID, id: CancelID.requestSignInEmail, cancelInFlight: true)
         
       case .onTapSignInGoogle:
@@ -88,7 +88,7 @@ extension SignInStore {
     case onTapSignInEmail
     case onTapSignInGoogle
     
-    case fetchSignInEmail(Result<Auth.Email.Request, CompositeErrorRepository>)
+    case fetchSignInEmail(Result<Bool, CompositeErrorRepository>)
     case fetchSignInGoogle(Result<Bool, CompositeErrorRepository>)
     
     case routeToSignUp
@@ -104,19 +104,3 @@ extension SignInStore {
     case requestSignInGoogle
   }
 }
-
-
-//var signInTest: () -> Effect<SignInStore.Action> {
-//  {
-//    .publisher {
-//      useCaseGroup.authUseCase
-//        .me()
-////          .signOut()
-////          .signInViaEmail(.init(content: "test@test.com", password: "123123"))
-//        .map { _ in true }
-//        .mapToResult()
-//        .receive(on: mainQueue)
-//        .map(SignInStore.Action.fetchTest)
-//    }
-//  }
-//}

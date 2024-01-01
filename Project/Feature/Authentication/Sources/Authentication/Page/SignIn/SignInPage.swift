@@ -5,7 +5,6 @@ import SwiftUI
 import GoogleSignIn
 import GoogleSignInSwift
 
-
 struct SignInPage {
   private let store: StoreOf<SignInStore>
   @ObservedObject private var viewStore: ViewStoreOf<SignInStore>
@@ -55,7 +54,7 @@ extension SignInPage: View {
         print("Google Sign In Button Tapped")
         viewStore.send(.onTapSignInGoogle)
       }
-
+      
       Spacer()
       
       Button(action: { viewStore.send(.routeToSignUp) }) {

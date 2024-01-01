@@ -13,24 +13,48 @@ public struct AuthUseCasePlatform {
 
 extension AuthUseCasePlatform: AuthUseCase {
   
-  public var signUpEmail: (Domain.Auth.Email.Request) -> AnyPublisher<Domain.Auth.Email.Request, CompositeErrorRepository> {
+//  public var signUpEmail: (Domain.Auth.Email.Request) -> AnyPublisher<Domain.Auth.Email.Request, CompositeErrorRepository> {
+//    { req in
+//      Future<Domain.Auth.Email.Request, CompositeErrorRepository> { promise in
+//        FirebaseAuth.Auth.auth().createUser(withEmail: req.content, password: req.password) { result, error in
+//          if let error { promise(.failure(.other(error))) }
+//          return promise(.success(req))
+//        }
+//      }
+//      .eraseToAnyPublisher()
+//    }
+//  }
+  
+  public var signUpEmail: (Domain.Auth.Email.Request) -> AnyPublisher<Void, CompositeErrorRepository> {
     { req in
-      Future<Domain.Auth.Email.Request, CompositeErrorRepository> { promise in
+      Future<Void, CompositeErrorRepository> { promise in
         FirebaseAuth.Auth.auth().createUser(withEmail: req.content, password: req.password) { result, error in
           if let error { promise(.failure(.other(error))) }
-          return promise(.success(req))
+          return promise(.success(Void()))
         }
       }
       .eraseToAnyPublisher()
     }
   }
   
-  public var signInEmail: (Domain.Auth.Email.Request) -> AnyPublisher<Domain.Auth.Email.Request, CompositeErrorRepository> {
+//  public var signInEmail: (Domain.Auth.Email.Request) -> AnyPublisher<Domain.Auth.Email.Request, CompositeErrorRepository> {
+//    { req in
+//      Future<Domain.Auth.Email.Request, CompositeErrorRepository> { promise in
+//        FirebaseAuth.Auth.auth().signIn(withEmail: req.content, password: req.password) { result, error in
+//          if let error { promise(.failure(.other(error))) }
+//          return promise(.success(req))
+//        }
+//      }
+//      .eraseToAnyPublisher()
+//    }
+//  }
+  
+  public var signInEmail: (Domain.Auth.Email.Request) -> AnyPublisher<Void, CompositeErrorRepository> {
     { req in
-      Future<Domain.Auth.Email.Request, CompositeErrorRepository> { promise in
+      Future<Void, CompositeErrorRepository> { promise in
         FirebaseAuth.Auth.auth().signIn(withEmail: req.content, password: req.password) { result, error in
           if let error { promise(.failure(.other(error))) }
-          return promise(.success(req))
+          return promise(.success(Void()))
         }
       }
       .eraseToAnyPublisher()
@@ -94,6 +118,15 @@ extension AuthUseCasePlatform: AuthUseCase {
             return promise(.success(Void()))
           }
         }
+      }
+      .eraseToAnyPublisher()
+    }
+  }
+  
+  public var signInApple: () -> AnyPublisher<Void, CompositeErrorRepository> {
+    {
+      Future<Void, CompositeErrorRepository> { promise in
+        
       }
       .eraseToAnyPublisher()
     }
