@@ -4,7 +4,8 @@ import ProjectDescription
 extension Target {
   static func previewTarget(
     projectName: String,
-    dependencies: [TargetDependency])
+    dependencies: [TargetDependency],
+    externalInfoPlist: [String: InfoPlist.Value] = [:])
   -> Self
   {
     .init(
@@ -13,7 +14,7 @@ extension Target {
       product: .app,
       bundleId: "com.myCompany.\(projectName.lowercased()).preview",
       deploymentTarget: .defaultTarget,
-      infoPlist: .extendingDefault(with: infoValue),
+      infoPlist: .extendingDefault(with: infoValue.merging(externalInfoPlist) { $1 }),
       sources: ["Sources/**"],
       resources: ["Resources/**"],
       dependencies: dependencies,
@@ -63,7 +64,8 @@ extension Project {
   public static func previewProject(
     projectName: String,
     packages: [Package],
-    dependencies: [TargetDependency])
+    dependencies: [TargetDependency],
+    externalInfoPlist: [String: InfoPlist.Value] = [:])
   -> Self
   {
     .init(
@@ -71,7 +73,10 @@ extension Project {
       organizationName: "myCompany",
       packages: packages,
       targets: [
-        .previewTarget(projectName: projectName, dependencies: dependencies),
+        .previewTarget(
+          projectName: projectName,
+          dependencies: dependencies,
+          externalInfoPlist: externalInfoPlist),
         .previewTestTarget(projectName: projectName),
       ],
       schemes: .testScheme(previewTestTarget: projectName))
@@ -143,7 +148,7 @@ extension [TargetDependency] {
   public static var defaultItemList: Self {
     [
       .package(product: "FirebaseAuth"),
-      .package(product: "ComposableArchitecture")
+      .package(product: "ComposableArchitecture"),
     ]
   }
 }
@@ -152,7 +157,6 @@ extension [Package] {
   public static var defaultItemList: Self {
     [
       .package(url: "https://github.com/firebase/firebase-ios-sdk.git", .upToNextMajor(from: "10.13.0")),
-      
     ]
   }
 }
