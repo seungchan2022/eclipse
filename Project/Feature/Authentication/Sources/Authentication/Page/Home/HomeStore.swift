@@ -66,7 +66,7 @@ extension HomeStore: Reducer {
         }
 
       case .throwError(let error):
-//        print(error)
+        Logger.error(error)
         return .none
       }
     }

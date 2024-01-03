@@ -26,6 +26,9 @@ let package = Package(
     .package(
       url: "https://github.com/google/GoogleSignIn-iOS",
       .upToNextMajor(from: "7.0.0")),
+    .package(
+      url: "https://github.com/apple/swift-log.git",
+      .upToNextMajor(from: "1.5.3")),
   ],
   targets: [
     .target(
@@ -38,6 +41,7 @@ let package = Package(
         .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
         .product(name: "GoogleSignIn", package: "GoogleSignIn-iOS"),
         .product(name: "GoogleSignInSwift", package: "GoogleSignIn-iOS"),
+        .product(name: "Logging", package: "swift-log"),
       ]),
     .testTarget(
       name: "ArchitectureTests",

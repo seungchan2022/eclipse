@@ -22,7 +22,8 @@ public final class DebugWrappingController<Content: View>: UIHostingController<C
   }
 
   deinit {
-//    print("✂️ \(matchPath) deinit...")
+    Logger.trace("✂️ \(matchPath) deinit...")
+  
   }
 
   // MARK: Public
@@ -32,6 +33,6 @@ public final class DebugWrappingController<Content: View>: UIHostingController<C
 
   public override func viewDidLoad() {
     super.viewDidLoad()
-//    print("🚗 \(matchPath)")
+    Logger.trace("🚗 \(matchPath)")
   }
 }

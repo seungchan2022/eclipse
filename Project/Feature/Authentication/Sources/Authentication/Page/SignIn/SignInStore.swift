@@ -57,7 +57,7 @@ extension SignInStore: Reducer {
         return .none
 
       case .throwError(let error):
-//        print(error)
+        Logger.error(error)
         return .none
       }
     }
