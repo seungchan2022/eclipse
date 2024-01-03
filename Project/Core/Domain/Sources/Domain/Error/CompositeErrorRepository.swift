@@ -11,11 +11,11 @@ public enum CompositeErrorRepository: Error {
   public var message: String {
     switch self {
     case .notFoundFilePath:
-      return "notFoundFilePath"
+      "notFoundFilePath"
     case .invalidTypeCast:
-      return "invalidTypeCast"
+      "invalidTypeCast"
     case .other(let error):
-      return "\(error)"
+      "\(error)"
     }
   }
 

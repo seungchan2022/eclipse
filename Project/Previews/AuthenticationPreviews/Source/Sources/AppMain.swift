@@ -1,19 +1,17 @@
-import SwiftUI
-import LinkNavigator
 import Architecture
 import FirebaseAuth
+import LinkNavigator
+import SwiftUI
 
 @main
 struct AppMain: App {
-  
+
+  // MARK: Internal
+
   @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
-  @State private var viewModel = AppViewModel()
-  @State private var isLoggendIn = false
-  
   var body: some Scene {
     WindowGroup {
-      
       Group {
         if isLoggendIn {
           LinkNavigationView(
@@ -26,11 +24,16 @@ struct AppMain: App {
         }
       }
       .onAppear {
-        if let _ = Auth.auth().currentUser {
-          self.isLoggendIn = true
+        if Auth.auth().currentUser != .none {
+          isLoggendIn = true
         }
       }
       .ignoresSafeArea()
     }
   }
+
+  // MARK: Private
+
+  @State private var viewModel = AppViewModel()
+  @State private var isLoggendIn = false
 }

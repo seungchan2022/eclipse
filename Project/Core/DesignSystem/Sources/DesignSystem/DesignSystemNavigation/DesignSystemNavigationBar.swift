@@ -87,7 +87,7 @@ extension DesignSystemNavigationBar {
 #Preview(body: {
   VStack {
     DesignSystemNavigationBar(
-      backAction: { print("hello") },
+      backAction: { },
       moreActionList: [
         .init(title: "Create", action: { }),
         .init(title: "Done", action: { }),

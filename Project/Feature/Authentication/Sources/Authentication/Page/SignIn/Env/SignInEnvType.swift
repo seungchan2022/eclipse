@@ -1,21 +1,22 @@
-import Foundation
 import Architecture
-import Domain
-import ComposableArchitecture
-import CombineExt
-import LinkNavigator
 import Combine
+import CombineExt
+import ComposableArchitecture
+import Domain
+import Foundation
+import LinkNavigator
+
+// MARK: - SignInEnvType
 
 struct SignInEnvType {
   let useCaseGroup: AuthenticationEnvironmentUseable
   let mainQueue: AnySchedulerOf<DispatchQueue>
   let navigator: RootNavigatorType
-  
+
   init(
     useCaseGroup: AuthenticationEnvironmentUseable,
     mainQueue: AnySchedulerOf<DispatchQueue> = .main,
-    navigator: RootNavigatorType
-  )
+    navigator: RootNavigatorType)
   {
     self.useCaseGroup = useCaseGroup
     self.mainQueue = mainQueue
@@ -36,7 +37,7 @@ extension SignInEnvType {
       }
     }
   }
-  
+
   var routeToSignUp: () -> Void {
     {
       navigator.backOrNext(
@@ -45,7 +46,7 @@ extension SignInEnvType {
         isAnimated: true)
     }
   }
-  
+
   var routeToHome: () -> Void {
     {
       navigator.backOrNext(
@@ -54,7 +55,7 @@ extension SignInEnvType {
         isAnimated: true)
     }
   }
-  
+
   var signInGoogle: () -> Effect<SignInStore.Action> {
     {
       .publisher {

@@ -1,8 +1,10 @@
+import Authentication
 import Domain
 import Foundation
 import LinkNavigator
 import Platform
-import Authentication
+
+// MARK: - AppSideEffect
 
 struct AppSideEffect: DependencyType, AuthenticationEnvironmentUseable {
   let authUseCase: AuthUseCase

@@ -1,6 +1,8 @@
 import Architecture
 import LinkNavigator
 
+// MARK: - AuthenticationRouteBuilderGroup
+
 public struct AuthenticationRouteBuilderGroup<RootNavigator: RootNavigatorType> {
   public init() { }
 }

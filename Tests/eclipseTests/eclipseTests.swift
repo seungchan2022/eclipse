@@ -1,7 +1,7 @@
 import XCTest
-@testable import Dashboard
+@testable import eclipse
 
-final class DashboardTests: XCTestCase {
+final class eclipseTests: XCTestCase {
   func testExample() throws {
     // XCTest Documentation
     // https://developer.apple.com/documentation/xctest

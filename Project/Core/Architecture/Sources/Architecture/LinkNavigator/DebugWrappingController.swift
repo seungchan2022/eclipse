@@ -1,10 +1,9 @@
 import Foundation
 import LinkNavigator
-import UIKit
 import SwiftUI
+import UIKit
 
 public final class DebugWrappingController<Content: View>: UIHostingController<Content>, MatchPathUsable {
-
 
   // MARK: Lifecycle
 
@@ -23,7 +22,7 @@ public final class DebugWrappingController<Content: View>: UIHostingController<C
   }
 
   deinit {
-    print("✂️ \(matchPath) deinit...")
+//    print("✂️ \(matchPath) deinit...")
   }
 
   // MARK: Public
@@ -33,6 +32,6 @@ public final class DebugWrappingController<Content: View>: UIHostingController<C
 
   public override func viewDidLoad() {
     super.viewDidLoad()
-    print("🚗 \(matchPath)")
+//    print("🚗 \(matchPath)")
   }
 }

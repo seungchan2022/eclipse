@@ -1,20 +1,21 @@
-import Foundation
-import Domain
 import Architecture
-import ComposableArchitecture
 import CombineExt
+import ComposableArchitecture
+import Domain
+import Foundation
 import LinkNavigator
+
+// MARK: - HomeEnvType
 
 struct HomeEnvType {
   let useCaseGroup: AuthenticationEnvironmentUseable
   let mainQueue: AnySchedulerOf<DispatchQueue>
   let navigator: RootNavigatorType
-  
+
   init(
     useCaseGroup: AuthenticationEnvironmentUseable,
     mainQueue: AnySchedulerOf<DispatchQueue> = .main,
-    navigator: RootNavigatorType
-  )
+    navigator: RootNavigatorType)
   {
     self.useCaseGroup = useCaseGroup
     self.mainQueue = mainQueue
@@ -35,7 +36,7 @@ extension HomeEnvType {
       }
     }
   }
-  
+
   var routeToSignIn: () -> Void {
     {
       navigator.replace(
@@ -43,7 +44,7 @@ extension HomeEnvType {
         isAnimated: false)
     }
   }
-    
+
   var user: () -> Effect<HomeStore.Action> {
     {
       .publisher {
@@ -56,7 +57,7 @@ extension HomeEnvType {
       }
     }
   }
-  
+
   var userInfo: () -> Effect<HomeStore.Action> {
     {
       .publisher {
