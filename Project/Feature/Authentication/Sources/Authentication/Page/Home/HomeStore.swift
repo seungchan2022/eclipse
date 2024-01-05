@@ -15,7 +15,7 @@ struct HomeStore {
 extension HomeStore: Reducer {
   var body: some ReducerOf<Self> {
     BindingReducer()
-    Reduce { state, action in
+    Reduce { _, action in
       switch action {
       case .binding:
         return .none
@@ -28,7 +28,6 @@ extension HomeStore: Reducer {
         return env.user()
           .cancellable(pageID: pageID, id: CancelID.requestGetUser, cancelInFlight: true)
 
-
       case .fetchUser(let result):
         switch result {
         case .success(let isLoggedIn):
@@ -36,7 +35,7 @@ extension HomeStore: Reducer {
           case true: env.routeToMe()
           case false: env.routeToSignIn()
           }
-          
+
           return .none
 
         case .failure(let error):
@@ -69,7 +68,6 @@ extension HomeStore {
   enum Action: Equatable, BindableAction {
     case binding(BindingAction<State>)
     case teardown
-
 
     case getUser
 

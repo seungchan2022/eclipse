@@ -19,8 +19,8 @@ let project: Project = .previewProject(
       [
         "CFBundleTypeRole": "Editor",
         "CFBundleURLSchemes": .array([
-          "com.googleusercontent.apps.266313701700-e2cd32sgi6li4kkemjt9s907iff7k78a"
-        ])
-      ]
-    ]
+          "com.googleusercontent.apps.266313701700-e2cd32sgi6li4kkemjt9s907iff7k78a",
+        ]),
+      ],
+    ],
   ])

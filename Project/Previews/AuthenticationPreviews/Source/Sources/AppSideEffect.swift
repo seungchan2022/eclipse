@@ -1,9 +1,9 @@
+import Architecture
 import Authentication
 import Domain
 import Foundation
 import LinkNavigator
 import Platform
-import Architecture
 
 // MARK: - AppSideEffect
 

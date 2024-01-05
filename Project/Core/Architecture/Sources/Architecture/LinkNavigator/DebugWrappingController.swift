@@ -23,7 +23,6 @@ public final class DebugWrappingController<Content: View>: UIHostingController<C
 
   deinit {
     Logger.trace("✂️ \(matchPath) deinit...")
-  
   }
 
   // MARK: Public

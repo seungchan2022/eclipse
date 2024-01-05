@@ -6,7 +6,7 @@ extension Target {
     projectName: String,
     dependencies: [TargetDependency],
     externalInfoPlist: [String: InfoPlist.Value] = [:])
-  -> Self
+    -> Self
   {
     .init(
       name: "\(projectName)Preview",
@@ -20,7 +20,7 @@ extension Target {
       dependencies: dependencies,
       settings: .defaultConfigSettings)
   }
-  
+
   static func previewTestTarget(projectName: String) -> Self {
     .init(
       name: "\(projectName)PreviewTests",
@@ -37,7 +37,7 @@ extension Target {
 }
 
 extension Collection<Scheme> {
-  
+
   public static func testScheme(previewTestTarget: String) -> [Scheme] {
     [
       .init(
@@ -60,13 +60,13 @@ extension Settings {
 }
 
 extension Project {
-  
+
   public static func previewProject(
     projectName: String,
     packages: [Package],
     dependencies: [TargetDependency],
     externalInfoPlist: [String: InfoPlist.Value] = [:])
-  -> Self
+    -> Self
   {
     .init(
       name: "\(projectName)Preview",
@@ -128,14 +128,14 @@ var customPropertyInfoValue: [String: InfoPlist.Value] {
 }
 
 extension String {
-  
+
   public static func appVersion() -> String {
     let formatter = DateFormatter()
     formatter.dateFormat = "yy.MM.dd"
     formatter.locale = Locale(identifier: "ko_KR")
     return formatter.string(from: Date())
   }
-  
+
   public static func appBuildVersion() -> String {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyyMMddHHmmsss"

@@ -1,12 +1,16 @@
 import SwiftUI
 
+// MARK: - AppFrontView
+
 public struct AppFrontView {
   let viewModel: ToastViewModel
-  
+
   public init(viewModel: ToastViewModel) {
     self.viewModel = viewModel
   }
 }
+
+// MARK: View
 
 extension AppFrontView: View {
   public var body: some View {
@@ -15,7 +19,7 @@ extension AppFrontView: View {
         .onTapGesture {
           viewModel.clear()
         }
-      
+
       Toast(message: viewModel.errorMessage, toastType: .error)
         .onTapGesture {
           viewModel.clear()

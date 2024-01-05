@@ -1,12 +1,18 @@
 import Foundation
 
+// MARK: - DebounceFunctor
+
 public class DebounceFunctor {
-  
-  public init(delay: TimeInterval,  queue: DispatchQueue = .main) {
+
+  // MARK: Lifecycle
+
+  public init(delay: TimeInterval, queue: DispatchQueue = .main) {
     self.delay = delay
     self.queue = queue
   }
-  
+
+  // MARK: Private
+
   private let delay: TimeInterval
   private var workItem: DispatchWorkItem?
   private let queue: DispatchQueue
@@ -19,9 +25,8 @@ extension DebounceFunctor {
     queue.asyncAfter(deadline: .now() + delay, execute: workItem)
     self.workItem = workItem
   }
-  
+
   public func cacel() {
     workItem?.cancel()
   }
 }
- 

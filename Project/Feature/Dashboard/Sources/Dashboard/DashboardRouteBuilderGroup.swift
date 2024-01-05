@@ -1,7 +1,7 @@
 import Architecture
 import LinkNavigator
 
-// MARK: - AuthenticationRouteBuilderGroup
+// MARK: - DashboardRouteBuilderGroup
 
 public struct DashboardRouteBuilderGroup<RootNavigator: RootNavigatorType> {
   public init() { }

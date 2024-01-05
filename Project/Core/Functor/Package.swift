@@ -14,7 +14,6 @@ let package = Package(
       targets: ["Functor"]),
   ],
   dependencies: [
-
   ],
   targets: [
     .target(

@@ -32,7 +32,7 @@ extension HomeEnvType {
         isAnimated: false)
     }
   }
-  
+
   var routeToMe: () -> Void {
     {
       navigator.replace(

@@ -1,18 +1,20 @@
 import Firebase
 import GoogleSignIn
-import UIKit
 import LinkNavigator
+import UIKit
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
-  
+
   let container: AppContainer = .build()
+
   var dependency: AppSideEffect { container.dependency }
   var navigator: SingleLinkNavigator { container.navigator }
-  
+
   func application(
     _: UIApplication,
-    didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool
+    didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil)
+    -> Bool
   {
     FirebaseApp.configure()
     return true
@@ -21,15 +23,17 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(
     _: UIApplication,
     open url: URL,
-    options _: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool
+    options _: [UIApplication.OpenURLOptionsKey: Any] = [:])
+    -> Bool
   {
     GIDSignIn.sharedInstance.handle(url)
   }
-  
+
   func application(
-    _ application: UIApplication,
+    _: UIApplication,
     configurationForConnecting connectingSceneSession: UISceneSession,
-    options: UIScene.ConnectionOptions) -> UISceneConfiguration
+    options _: UIScene.ConnectionOptions)
+    -> UISceneConfiguration
   {
     let sceneConfig = UISceneConfiguration(name: .none, sessionRole: connectingSceneSession.role)
     sceneConfig.delegateClass = SceneDelegate.self

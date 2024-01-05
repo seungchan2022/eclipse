@@ -29,6 +29,5 @@ extension HomePage: View {
     .onDisappear {
       viewStore.send(.teardown)
     }
-    
   }
 }

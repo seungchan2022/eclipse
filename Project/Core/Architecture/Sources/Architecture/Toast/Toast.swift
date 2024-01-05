@@ -1,26 +1,30 @@
 import DesignSystem
 import SwiftUI
 
+// MARK: - Toast
+
 public struct Toast {
-  
+
   private let message: String
   private let toastType: ToastType
-  
+
   public init(
     message: String,
-    toastType: ToastType) 
+    toastType: ToastType)
   {
     self.message = message
     self.toastType = toastType
   }
-  
+
 }
+
+// MARK: Toast.ToastType
 
 extension Toast {
   public enum ToastType: Equatable {
     case `default`
     case error
-    
+
     var backgroudColor: Color {
       switch self {
       case .default:
@@ -32,11 +36,13 @@ extension Toast {
   }
 }
 
+// MARK: View
+
 extension Toast: View {
   public var body: some View {
     VStack {
       Spacer()
-      
+
       if !message.isEmpty {
         HStack {
           Text(message)

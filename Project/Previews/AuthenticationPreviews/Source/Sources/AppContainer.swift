@@ -1,16 +1,22 @@
-import Foundation
 import Architecture
+import Foundation
 import LinkNavigator
 
+// MARK: - AppContainer
+
 final class AppContainer {
-  
-  let dependency: AppSideEffect
-  let navigator: SingleLinkNavigator
-  
+
+  // MARK: Lifecycle
+
   init(dependency: AppSideEffect, navigator: SingleLinkNavigator) {
     self.dependency = dependency
     self.navigator = navigator
   }
+
+  // MARK: Internal
+
+  let dependency: AppSideEffect
+  let navigator: SingleLinkNavigator
 }
 
 extension AppContainer {
@@ -18,7 +24,7 @@ extension AppContainer {
     let sideEffect = AppSideEffect(
       authUseCase: AuthUseCasePlatform(),
       toastViewModel: .init())
-    
+
     return .init(
       dependency: sideEffect,
       navigator: .init(

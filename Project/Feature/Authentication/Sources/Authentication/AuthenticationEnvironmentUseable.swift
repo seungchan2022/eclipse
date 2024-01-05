@@ -1,5 +1,5 @@
-import Domain
 import Architecture
+import Domain
 
 public protocol AuthenticationEnvironmentUseable {
   var authUseCase: AuthUseCase { get }
