@@ -15,3 +15,4 @@ extension Link.Authentication {
     case home
   }
 }
+

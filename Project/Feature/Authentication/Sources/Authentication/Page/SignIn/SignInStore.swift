@@ -58,6 +58,7 @@ extension SignInStore: Reducer {
 
       case .throwError(let error):
         Logger.error(error)
+        env.useCaseGroup.toastViewModel.send(errorMessage: error.message)
         return .none
       }
     }

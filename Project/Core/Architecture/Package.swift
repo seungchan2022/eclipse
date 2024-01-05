@@ -17,6 +17,7 @@ let package = Package(
     .package(path: "../DesignSystem"),
     .package(path: "../Domain"),
     .package(path: "../Platform"),
+    .package(path: "../Functor"),
     .package(
       url: "https://github.com/interactord/LinkNavigator",
       .upToNextMajor(from: "1.0.2")),
@@ -37,6 +38,7 @@ let package = Package(
         "DesignSystem",
         "Domain",
         "Platform",
+        "Functor",
         "LinkNavigator",
         .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
         .product(name: "GoogleSignIn", package: "GoogleSignIn-iOS"),

@@ -3,15 +3,11 @@ import Domain
 import Foundation
 import LinkNavigator
 import Platform
+import Architecture
 
 // MARK: - AppSideEffect
 
 struct AppSideEffect: DependencyType, AuthenticationEnvironmentUseable {
   let authUseCase: AuthUseCase
-}
-
-extension AppSideEffect {
-  static func build() -> Self {
-    .init(authUseCase: AuthUseCasePlatform())
-  }
+  let toastViewModel: ToastViewModel
 }

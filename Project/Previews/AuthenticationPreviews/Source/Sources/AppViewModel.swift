@@ -1,19 +1,15 @@
 import Domain
 import Foundation
 import LinkNavigator
+import Architecture
 
 @Observable
 final class AppViewModel {
 
   // MARK: Lifecycle
-
-  init() {
-    linkNavigator = SingleLinkNavigator(
-      routeBuilderItemList: AppRouteBuilderGroup().release,
-      dependency: AppSideEffect.build())
+  init(linkNavigator: SingleLinkNavigator) {
+    self.linkNavigator = linkNavigator
   }
-
-  // MARK: Internal
 
   let linkNavigator: SingleLinkNavigator
 }
