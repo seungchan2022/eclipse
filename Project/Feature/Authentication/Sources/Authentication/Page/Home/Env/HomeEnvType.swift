@@ -24,23 +24,19 @@ struct HomeEnvType {
 }
 
 extension HomeEnvType {
-  var signOut: () -> Effect<HomeStore.Action> {
-    {
-      .publisher {
-        useCaseGroup.authUseCase
-          .signOut()
-          .map { _ in true }
-          .mapToResult()
-          .receive(on: mainQueue)
-          .map(HomeStore.Action.fetchSignOut)
-      }
-    }
-  }
 
   var routeToSignIn: () -> Void {
     {
       navigator.replace(
         linkItem: .init(path: Link.Authentication.Path.signIn.rawValue),
+        isAnimated: false)
+    }
+  }
+  
+  var routeToMe: () -> Void {
+    {
+      navigator.replace(
+        linkItem: .init(path: Link.Dashboard.Path.me.rawValue),
         isAnimated: false)
     }
   }
@@ -50,22 +46,10 @@ extension HomeEnvType {
       .publisher {
         useCaseGroup.authUseCase
           .me()
-          .map { _ in true }
+          .map { $0 != .none }
           .mapToResult()
           .receive(on: mainQueue)
           .map(HomeStore.Action.fetchUser)
-      }
-    }
-  }
-
-  var userInfo: () -> Effect<HomeStore.Action> {
-    {
-      .publisher {
-        useCaseGroup.authUseCase
-          .me()
-          .mapToResult()
-          .receive(on: mainQueue)
-          .map(HomeStore.Action.fetchUserInfo)
       }
     }
   }
