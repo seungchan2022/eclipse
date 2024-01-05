@@ -13,4 +13,11 @@ extension DashboardRouteBuilderGroup {
       MeRouteBuilder.generate(),
     ]
   }
+  
+  public static var template: [RouteBuilderOf<RootNavigator>] {
+    [
+      HomeRouteBuilder.generate(),
+      SignInRouteBuilder.generate(),
+    ]
+  }
 }

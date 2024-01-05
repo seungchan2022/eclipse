@@ -1,10 +1,22 @@
+import Architecture
+import FirebaseAuth
+import LinkNavigator
 import SwiftUI
 
-@main
-struct AppMain: App {
-  var body: some Scene {
-    WindowGroup {
-      Text("App Main")
-    }
+// MARK: - AppMain
+
+struct AppMain {
+  let viewModel: AppViewModel
+  @State private var isLoggendIn = false
+}
+
+// MARK: View
+
+extension AppMain: View {
+  var body: some View {
+    LinkNavigationView(
+      linkNavigator: viewModel.linkNavigator,
+      item: .init(path: Link.Authentication.Path.home.rawValue))
+      .ignoresSafeArea()
   }
 }

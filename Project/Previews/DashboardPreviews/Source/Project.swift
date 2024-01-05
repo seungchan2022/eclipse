@@ -13,4 +13,14 @@ let project: Project = .previewProject(
   ] + .defaultItemList,
   dependencies: [
     .package(product: "Dashboard"),
-  ] + .defaultItemList)
+  ] + .defaultItemList,
+  externalInfoPlist: [
+    "CFBundleURLTypes": [
+      [
+        "CFBundleTypeRole": "Editor",
+        "CFBundleURLSchemes": .array([
+          "com.googleusercontent.apps.266313701700-e2cd32sgi6li4kkemjt9s907iff7k78a",
+        ]),
+      ],
+    ],
+  ])
