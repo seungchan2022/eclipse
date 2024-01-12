@@ -17,6 +17,9 @@ extension AppMain: View {
     LinkNavigationView(
       linkNavigator: viewModel.linkNavigator,
       item: .init(path: Link.Authentication.Path.home.rawValue))
+//    LinkNavigationView(
+//      linkNavigator: viewModel.linkNavigator,
+//      item: .init(path: Link.Dashboard.Path.profile.rawValue))
       .ignoresSafeArea()
   }
 }
