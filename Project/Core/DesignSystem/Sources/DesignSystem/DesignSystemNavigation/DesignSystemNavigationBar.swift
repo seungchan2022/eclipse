@@ -24,7 +24,7 @@ extension DesignSystemNavigationBar {
     DesignSystemColor.system(.black).color
   }
 
-  var maxHeight: Double { 44 }
+  var maxHeight: Double { 32 }
 }
 
 // MARK: View
@@ -40,7 +40,7 @@ extension DesignSystemNavigationBar: View {
             if let image = actionItem.image {
               image
                 .resizable()
-                .frame(width: 32, height: 32)
+                .frame(width: 24, height: 24)
                 .foregroundColor(tintColor)
                 .padding(.vertical, 5)
             } else {
@@ -67,18 +67,18 @@ extension DesignSystemNavigationBar: View {
       }
 
       .overlay(alignment: .trailing) {
-        HStack(spacing: 8) {
+        HStack(spacing: 16) {
           ForEach(moreActionList, id: \.id) { item in
             Button(action: item.action) {
               if let image = item.image {
                 image
                   .resizable()
-                  .frame(width: 32, height: 32)
+                  .frame(width: 24, height: 24)
                   .foregroundColor(tintColor)
                   .padding(.vertical, 5)
               } else {
                 Text(item.title)
-                  .font(.system(size: 14, weight: .regular, design: .default))
+                  .font(.system(size: 16, weight: .regular, design: .default))
                   .multilineTextAlignment(.trailing)
                   .foregroundStyle(tintColor)
                   .fixedSize(horizontal: false, vertical: true)

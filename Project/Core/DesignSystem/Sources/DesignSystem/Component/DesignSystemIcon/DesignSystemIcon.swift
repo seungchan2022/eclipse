@@ -14,6 +14,15 @@ public enum DesignSystemIcon {
   case unChecked
   case checked
   case delete
+  
+  case plus
+  case more
+  case profile
+  case find
+  case avatar
+  case grid
+  case play
+  case person
 
   // MARK: Public
 
@@ -32,6 +41,14 @@ public enum DesignSystemIcon {
       case .unChecked: Image(systemName: "rectangle")
       case .checked: Image(systemName: "checkmark.rectangle")
       case .delete: Image(systemName: "trash")
+      case .plus: Image(systemName: "plus.square")
+      case .more: Image(systemName: "line.3.horizontal")
+      case .profile: Image(systemName: "person.crop.circle")
+      case .find: Image(systemName: "person.badge.plus")
+      case .avatar: Image(systemName: "theatermasks.circle")
+      case .grid: Image(systemName: "squareshape.split.3x3")
+      case .play: Image(systemName: "play.rectangle")
+      case .person: Image(systemName: "person.crop.rectangle")
       }
     }
 
