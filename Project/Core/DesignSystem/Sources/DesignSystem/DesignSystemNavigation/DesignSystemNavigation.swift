@@ -4,23 +4,14 @@ import SwiftUI
 
 public struct DesignSystemNavigation<Content: View> {
   let barItem: DesignSystemNavigationBar?
-  let title: String?
   let content: Content
-
+  
   public init(
     barItem: DesignSystemNavigationBar? = .none,
-    title: String?,
     @ViewBuilder content: @escaping () -> Content)
   {
     self.barItem = barItem
-    self.title = title
     self.content = content()
-  }
-}
-
-extension DesignSystemNavigation {
-  var titleTopMargin: Double {
-    barItem == nil ? 48 : 32
   }
 }
 
@@ -31,22 +22,12 @@ extension DesignSystemNavigation: View {
     VStack(alignment: .leading) {
       if let barItem {
         barItem
-          .padding(.leading, 32)
-          .padding(.trailing, 32)
+          .padding(.horizontal, 16)
       }
       ScrollView {
-        if let title {
-          Text(title)
-            .font(.system(size: 30, weight: .bold, design: .default))
-            .multilineTextAlignment(.leading)
-            .padding(.horizontal, 32)
+          content
+            .padding(.top, 16)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.top, titleTopMargin)
-        }
-        content
-          .padding(.top, 16)
-
-//        Spacer(minLength: .zero)
       }
     }
     .frame(minWidth: .zero, maxWidth: .infinity)
@@ -54,25 +35,16 @@ extension DesignSystemNavigation: View {
   }
 }
 
-#Preview("Case1") {
+#Preview {
   DesignSystemNavigation(
     barItem: .init(
-      backAction: { },
+      actionItem: .init(title: "UserName", action: { }),
       moreActionList: [
-        .init(title: "more", action: { }),
-      ]),
-    title: "메모장")
-  {
-//      Text("asdjkasldjkasda")
-//      Text("asdjkasldjkasda")
-  }
-}
-
-#Preview("Case2") {
-  DesignSystemNavigation(
-    title: "메모장")
-  {
-//      Text("asdjkasldjkasda")
-//      Text("asdjkasldjkasda")
-  }
+        .init(title: "1", image: DesignSystemIcon.arrow.image, action: {}),
+        .init(title: "2", image: DesignSystemIcon.delete.image, action: {}),
+      ])) {
+        ForEach(0..<100) { _ in
+        Text("dd")
+        }
+      }
 }
