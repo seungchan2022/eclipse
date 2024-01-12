@@ -7,6 +7,6 @@ struct AppRouteBuilderGroup<RootNavigator: RootNavigatorType> {
 
   var release: [RouteBuilderOf<RootNavigator>] {
     DashboardRouteBuilderGroup.release
-    + DashboardRouteBuilderGroup.template
+      + DashboardRouteBuilderGroup.template
   }
 }

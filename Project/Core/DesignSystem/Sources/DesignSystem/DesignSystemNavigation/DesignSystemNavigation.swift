@@ -5,7 +5,7 @@ import SwiftUI
 public struct DesignSystemNavigation<Content: View> {
   let barItem: DesignSystemNavigationBar?
   let content: Content
-  
+
   public init(
     barItem: DesignSystemNavigationBar? = .none,
     @ViewBuilder content: @escaping () -> Content)
@@ -25,9 +25,9 @@ extension DesignSystemNavigation: View {
           .padding(.horizontal, 16)
       }
       ScrollView {
-          content
-            .padding(.top, 16)
-            .frame(maxWidth: .infinity, alignment: .leading)
+        content
+          .padding(.top, 16)
+          .frame(maxWidth: .infinity, alignment: .leading)
       }
     }
     .frame(minWidth: .zero, maxWidth: .infinity)
@@ -40,11 +40,11 @@ extension DesignSystemNavigation: View {
     barItem: .init(
       actionItem: .init(title: "UserName", action: { }),
       moreActionList: [
-        .init(title: "1", image: DesignSystemIcon.arrow.image, action: {}),
-        .init(title: "2", image: DesignSystemIcon.delete.image, action: {}),
+        .init(title: "1", image: DesignSystemIcon.arrow.image, action: { }),
+        .init(title: "2", image: DesignSystemIcon.delete.image, action: { }),
       ])) {
-        ForEach(0..<100) { _ in
-        Text("dd")
-        }
-      }
+    ForEach(0..<100) { _ in
+      Text("dd")
+    }
+  }
 }

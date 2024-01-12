@@ -5,11 +5,13 @@ import Domain
 import Foundation
 import LinkNavigator
 
+// MARK: - ProfileEnvType
+
 struct ProfileEnvType {
   let useCaseGroup: DashboardEnvironmentUseable
   let mainQueue: AnySchedulerOf<DispatchQueue>
   let navigator: RootNavigatorType
-  
+
   init(
     useCaseGroup: DashboardEnvironmentUseable,
     mainQueue: AnySchedulerOf<DispatchQueue> = .main,

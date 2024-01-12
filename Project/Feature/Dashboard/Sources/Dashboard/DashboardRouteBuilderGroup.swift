@@ -14,7 +14,7 @@ extension DashboardRouteBuilderGroup {
       ProfileRouteBuilder.generate(),
     ]
   }
-  
+
   public static var template: [RouteBuilderOf<RootNavigator>] {
     [
       HomeRouteBuilder.generate(),

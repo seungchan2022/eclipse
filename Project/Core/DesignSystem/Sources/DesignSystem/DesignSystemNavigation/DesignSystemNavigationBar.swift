@@ -3,11 +3,11 @@ import SwiftUI
 // MARK: - DesignSystemNavigationBar
 
 public struct DesignSystemNavigationBar {
-  
+
   let actionItem: ActionItem?
   let title: String?
   let moreActionList: [MoreAction]
-  
+
   public init(
     actionItem: ActionItem? = .none,
     title: String? = "",
@@ -23,14 +23,14 @@ extension DesignSystemNavigationBar {
   var tintColor: Color {
     DesignSystemColor.system(.black).color
   }
-  
+
   var maxHeight: Double { 44 }
 }
 
 // MARK: View
 
 extension DesignSystemNavigationBar: View {
-  
+
   public var body: some View {
     Rectangle()
       .fill(.white)
@@ -43,8 +43,7 @@ extension DesignSystemNavigationBar: View {
                 .frame(width: 32, height: 32)
                 .foregroundColor(tintColor)
                 .padding(.vertical, 5)
-            }
-            else {
+            } else {
               Text(actionItem.title)
                 .font(.system(size: 20))
                 .foregroundStyle(tintColor)
@@ -54,19 +53,19 @@ extension DesignSystemNavigationBar: View {
           EmptyView()
         }
       }
-    
+
       .overlay(alignment: .center) {
         if let title {
           Text(title)
             .font(.system(size: 20))
             .foregroundStyle(tintColor)
             .padding(.top, 5)
-          
+
         } else {
           EmptyView()
         }
       }
-    
+
       .overlay(alignment: .trailing) {
         HStack(spacing: 8) {
           ForEach(moreActionList, id: \.id) { item in
@@ -77,8 +76,7 @@ extension DesignSystemNavigationBar: View {
                   .frame(width: 32, height: 32)
                   .foregroundColor(tintColor)
                   .padding(.vertical, 5)
-              }
-              else {
+              } else {
                 Text(item.title)
                   .font(.system(size: 14, weight: .regular, design: .default))
                   .multilineTextAlignment(.trailing)
@@ -95,12 +93,14 @@ extension DesignSystemNavigationBar: View {
   }
 }
 
+// MARK: DesignSystemNavigationBar.ActionItem
+
 extension DesignSystemNavigationBar {
   public struct ActionItem: Equatable, Identifiable {
     let title: String
     let image: Image?
     let action: () -> Void
-    
+
     public init(
       title: String,
       image: Image? = .none,
@@ -110,14 +110,15 @@ extension DesignSystemNavigationBar {
       self.image = image
       self.action = action
     }
-    
+
     public var id: String { title }
-    
+
     public static func == (lhs: Self, rhs: Self) -> Bool {
       lhs.title == rhs.title
     }
   }
 }
+
 // MARK: DesignSystemNavigationBar.MoreAction
 
 extension DesignSystemNavigationBar {
@@ -125,7 +126,7 @@ extension DesignSystemNavigationBar {
     let title: String
     let image: Image?
     let action: () -> Void
-    
+
     public init(
       title: String,
       image: Image? = .none,
@@ -135,9 +136,9 @@ extension DesignSystemNavigationBar {
       self.image = image
       self.action = action
     }
-    
+
     public var id: String { title }
-    
+
     public static func == (lhs: Self, rhs: Self) -> Bool {
       lhs.title == rhs.title
     }
@@ -164,8 +165,7 @@ extension DesignSystemNavigationBar {
     DesignSystemNavigationBar(
       title: "ddd",
       moreActionList: [
-        .init(title: "d21", action: {})
-      ]
-    )
+        .init(title: "d21", action: { }),
+      ])
   }
 }
