@@ -14,12 +14,15 @@ struct AppMain {
 
 extension AppMain: View {
   var body: some View {
-    LinkNavigationView(
-      linkNavigator: viewModel.linkNavigator,
-      item: .init(path: Link.Authentication.Path.home.rawValue))
 //    LinkNavigationView(
 //      linkNavigator: viewModel.linkNavigator,
-//      item: .init(path: Link.Dashboard.Path.profile.rawValue))
+//      item: .init(path: Link.Authentication.Path.home.rawValue))
+    LinkNavigationView(
+      linkNavigator: viewModel.linkNavigator,
+      item: .init(path: Link.Dashboard.Path.profile.rawValue))
+//    LinkNavigationView(
+//      linkNavigator: viewModel.linkNavigator,
+//      item: .init(path: Link.Dashboard.Path.profileEditor.rawValue))
       .ignoresSafeArea()
   }
 }

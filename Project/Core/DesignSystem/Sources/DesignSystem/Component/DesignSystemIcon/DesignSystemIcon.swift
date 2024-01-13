@@ -22,7 +22,7 @@ public enum DesignSystemIcon {
   case avatar
   case grid
   case play
-  case person
+  case tag
 
   // MARK: Public
 
@@ -48,7 +48,7 @@ public enum DesignSystemIcon {
       case .avatar: Image(systemName: "theatermasks.circle")
       case .grid: Image(systemName: "squareshape.split.3x3")
       case .play: Image(systemName: "play.rectangle")
-      case .person: Image(systemName: "person.crop.rectangle")
+      case .tag: Image(systemName: "person.crop.artframe")
       }
     }
 
