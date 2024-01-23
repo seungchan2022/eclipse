@@ -23,6 +23,11 @@ public enum DesignSystemIcon {
   case grid
   case play
   case tag
+  case story
+  case highlight
+  case live
+  case customPlay
+
 
   // MARK: Public
 
@@ -49,7 +54,12 @@ public enum DesignSystemIcon {
       case .grid: Image(systemName: "squareshape.split.3x3")
       case .play: Image(systemName: "play.rectangle")
       case .tag: Image(systemName: "person.crop.artframe")
+      case .story: Image(systemName: "plus.circle")
+      case .highlight: Image(systemName: "heart.circle")
+      case .live: Image(systemName: "livephoto.play")
+      case .customPlay: Image(systemName: "wand.and.stars")
       }
+       
     }
 
     return image.renderingMode(.template)
