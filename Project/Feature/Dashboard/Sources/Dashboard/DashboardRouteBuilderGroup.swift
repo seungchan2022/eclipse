@@ -13,6 +13,7 @@ extension DashboardRouteBuilderGroup {
       MeRouteBuilder.generate(),
       ProfileRouteBuilder.generate(),
       ProfileEditorRouteBuilder.generate(),
+      PlusRouteBuilder.generate(),
     ]
   }
 

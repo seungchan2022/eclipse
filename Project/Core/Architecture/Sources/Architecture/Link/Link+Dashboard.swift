@@ -13,5 +13,6 @@ extension Link.Dashboard {
     case me
     case profile
     case profileEditor
+    case plus
   }
 }
