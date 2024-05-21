@@ -1,26 +1,16 @@
 import ProjectDescription
 import ProjectDescriptionHelpers
 
-let project: Project = .previewProject(
-  projectName: "DashboardPreviews",
+let project: Project = .preview(
+  projectName: "Dashboard",
   packages: [
-    .local(path: "../../../Feature/Dashboard"),
-    .local(path: "../../../Core/Architecture"),
-    .local(path: "../../../Core/DesignSystem"),
-    .local(path: "../../../Core/Domain"),
-    .local(path: "../../../Core/Platform"),
-    .local(path: "../../../Core/Functor"),
-  ] + .defaultItemList,
+    .local(path: .relativeToRoot("Modules/Feature/Dashboard")),
+    .local(path: .relativeToRoot("Modules/Core/Domain")),
+    .local(path: .relativeToRoot("Modules/Core/Platform")),
+    .local(path: .relativeToRoot("Modules/Core/Functor")),
+    .local(path: .relativeToRoot("Modules/Core/Architecture")),
+    .local(path: .relativeToRoot("Modules/Core/DesignSystem")),
+  ],
   dependencies: [
-    .package(product: "Dashboard"),
-  ] + .defaultItemList,
-  externalInfoPlist: [
-    "CFBundleURLTypes": [
-      [
-        "CFBundleTypeRole": "Editor",
-        "CFBundleURLSchemes": .array([
-          "com.googleusercontent.apps.266313701700-e2cd32sgi6li4kkemjt9s907iff7k78a",
-        ]),
-      ],
-    ],
+    .package(product: "Dashboard", type: .runtime),
   ])
